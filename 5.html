@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+<body>
+<!--
+Обязательное задание.
+
+Необходимо скопировать и вставить в данный скрипт все функции из 4 задания.
+Необходимо реализовать функцию:
+mathOperation(arg1, arg2, operation);
+Параметры:
+arg1 - первое число.
+arg2 - второе число.
+operation - строка, которая содержит один символ из: "+", "-", "*", "/".
+Функция mathOperation должна вернуть результат операции, который был передан в
+параметр operation для двух первых аргументов (arg1 и arg2).
+Функция mathOperation должна использовать для вычисления функции из 4 задания.
+
+Примеры вызова функции:
+console.log(mathOperation(5, 3, "+")); // 8
+console.log(mathOperation(5, 3, ":)")); // NaN
+
+Функции mathOperation всегда передаются корректные числа, проверки на NaN,
+Infinity делать не нужно, однако, в случае если был передан некорректный
+аргумент в параметр operation, необходимо вернуть NaN.
+
+Необходимо для всех функций прописать комментарии jsdoc https://jsdoc.app/.
+-->
+<script>
+  "use strict";
+
+  /**
+    * Складывает переданные аргументы a и b
+    * @param {number} a
+    * @param {number} b
+    * return {number} Сумма
+  **/
+  const mySum = function (a, b) {return a + b};
+
+  /**
+    * Возвращает разность переданных аргументов a и b
+    * @param {number} a
+    * @param {number} b
+    * return {number} Разность
+  **/
+  const mySub = function (a, b) {return Math.abs(a - b)};
+
+  /**
+    * Умножает переданные аргументы a и b
+    * @param {number} a
+    * @param {number} b
+    * return {number} Произведение
+  **/
+  const myMul = function (a, b) {return a * b};
+
+  /**
+    * Делит переданные аргументы a и b
+    * @param {number} a
+    * @param {number} b
+    * return {number} Частное
+  **/
+  const myDiv = function (a, b) {return a / b};
+  
+  const mathOperation = function (arg1, arg2, operation) {
+    switch (operation) {
+      case '+': return mySum(arg1, arg2);
+      case '-': return mySub(arg1, arg2);
+      case '*': return myMul(arg1, arg2);
+      case '/': return myDiv(arg1, arg2);
+      default: return NaN;  
+    }
+  }
+
+  console.log(mathOperation(2, 2, '+'));
+
+</script>
+</body>
+</html>
