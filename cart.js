@@ -64,7 +64,7 @@ class Cart {
 }
 
 
-const cart = new Cart;
+const cart = new Cart();
 
 /*
 Показать/скрыть корзину
