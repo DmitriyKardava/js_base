@@ -1,19 +1,18 @@
 'use strict';
 
+const itemsEl = document.querySelector('.featuredItems');
 
 class Cart {
-    static cartIconEl = document.querySelector('.cartIconWrap');
-    static cartIconCounterEl = document.querySelector('.cartIconWrap span');
-    static cartEl = document.querySelector('.basket');
-    static itemsEl = document.querySelector('.featuredItems');
-    static cartTotalEl = document.querySelector('.basketTotal');
-    static cartTotalValEl = document.querySelector('.basketTotalValue');
-    
+    static iconEl = document.querySelector('.cartIconWrap');
+    static iconCounterEl = document.querySelector('.cartIconWrap span');
+    static mainEl = document.querySelector('.basket');
+    static totalEl = document.querySelector('.basketTotal');
+    static totalValEl = document.querySelector('.basketTotalValue');
+
     constructor() {
         this.items = {};
         this.totalCount = 0;
         this.totalPrice = 0;
-
     }
 
     #renderNewProduct(id) {
@@ -31,13 +30,13 @@ class Cart {
                 </div>
             </div>
         `;
-        cartTotalEl.insertAdjacentHTML("beforebegin", newRow);
+        Cart.totalEl.insertAdjacentHTML("beforebegin", newRow);
     }
 
     #renderProduct(id) {
-        cartIconCounterEl.textContent = cart.totalCount.toString();
-        cartTotalValEl.textContent = this.totalPrice.toFixed(2);
-        const cartRowEl = cartEl.querySelector(`.basketRow[data-id="${id}"]`);
+        Cart.iconCounterEl.textContent = cart.totalCount.toString();
+        Cart.totalValEl.textContent = this.totalPrice.toFixed(2);
+        const cartRowEl = Cart.mainEl.querySelector(`.basketRow[data-id="${id}"]`);
         if (!cartRowEl) {
             this.#renderNewProduct(id);
             return;
@@ -49,7 +48,7 @@ class Cart {
     }
 
     toggleView() {
-        cartEl.classList.toggle('hidden');
+        Cart.mainEl.classList.toggle('hidden');
     }
 
     add(id, name, price) {
@@ -63,20 +62,18 @@ class Cart {
     }
 }
 
-
 const cart = new Cart();
 
 /*
 Показать/скрыть корзину
 */
-cartIconEl.addEventListener('click', () => {
+Cart.iconEl.addEventListener('click', () => {
     cart.toggleView();
 });
 
 /*
 Добавить элемент в корзину
 */
-
 itemsEl.addEventListener('click', event => {
     if (event.target.tagName !== 'BUTTON') {
         return;
