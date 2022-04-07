@@ -1,24 +1,19 @@
 'use strict';
 
-const cartIconEl = document.querySelector('.cartIconWrap');
-const cartIconCounterEl = document.querySelector('.cartIconWrap span');
-const cartEl = document.querySelector('.basket');
-const itemsEl = document.querySelector('.featuredItems');
-const cartTotalEl = document.querySelector('.basketTotal');
-const cartTotalValEl = document.querySelector('.basketTotalValue');
-
-/*
-Показать/скрыть корзину
-*/
-cartIconEl.addEventListener('click', () => {
-    cartEl.classList.toggle('hidden');
-});
 
 class Cart {
+    static cartIconEl = document.querySelector('.cartIconWrap');
+    static cartIconCounterEl = document.querySelector('.cartIconWrap span');
+    static cartEl = document.querySelector('.basket');
+    static itemsEl = document.querySelector('.featuredItems');
+    static cartTotalEl = document.querySelector('.basketTotal');
+    static cartTotalValEl = document.querySelector('.basketTotalValue');
+    
     constructor() {
         this.items = {};
         this.totalCount = 0;
         this.totalPrice = 0;
+
     }
 
     #renderNewProduct(id) {
@@ -53,6 +48,9 @@ class Cart {
             (this.items[id].price * this.items[id].count).toFixed(2);
     }
 
+    toggleView() {
+        cartEl.classList.toggle('hidden');
+    }
 
     add(id, name, price) {
         if (!(id in this.items)) {
@@ -67,6 +65,17 @@ class Cart {
 
 
 const cart = new Cart;
+
+/*
+Показать/скрыть корзину
+*/
+cartIconEl.addEventListener('click', () => {
+    cart.toggleView();
+});
+
+/*
+Добавить элемент в корзину
+*/
 
 itemsEl.addEventListener('click', event => {
     if (event.target.tagName !== 'BUTTON') {
