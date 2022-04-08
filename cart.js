@@ -75,7 +75,7 @@ Cart.iconEl.addEventListener('click', () => {
 Добавить элемент в корзину
 */
 itemsEl.addEventListener('click', event => {
-    if (event.target.tagName !== 'BUTTON') {
+    if (!event.target.closest('.addToCart')) {
         return;
     }
     const itemEl = event.target.closest('.featuredItem');
@@ -84,3 +84,4 @@ itemsEl.addEventListener('click', event => {
     const price = +itemEl.dataset.price;
     cart.add(id, name, price);
 });
+    `
