@@ -84,4 +84,3 @@ itemsEl.addEventListener('click', event => {
     const price = +itemEl.dataset.price;
     cart.add(id, name, price);
 });
-    `
